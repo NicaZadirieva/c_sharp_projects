@@ -1,2 +1,6 @@
 // Класс ошибки при недостатке средств
-class AccountError : ApplicationException { }
+class AccountError : ApplicationException
+{
+    public AccountError(string? message)
+        : base(message) { }
+}
