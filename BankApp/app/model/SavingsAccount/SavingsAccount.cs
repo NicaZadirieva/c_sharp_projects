@@ -16,10 +16,11 @@ class SavingsAccount : IAccountActions
 
     public void withdraw(float amount)
     {
-        if (new DateOnly().CompareTo(expiredAt) < 0)
+        var currentTime = DateOnly.FromDateTime(DateTime.Now);
+        if (currentTime.CompareTo(expiredAt) < 0)
         {
             throw new AccountError(
-                "Запрещено снимать деньги до установленной даты: " + expiredAt.ToString()
+                "Запрещено снимать деньги до установленной даты: " + expiredAt.ToLongDateString()
             );
         }
         else if (this.amount - amount < 0)
